@@ -116,6 +116,36 @@ class LinkedList:
             count += 1
             itr = itr.next
 
+    def insert_after_value(self, data_after, data_to_insert):
+        itr = self.head
+        success = 0
+        while itr:
+            if itr.data == data_after:
+                success += 1
+                node = Node(data_to_insert, itr.next)
+                itr.next = node
+                break
+            itr = itr.next
+        if success == 0:
+            raise Exception("This value is not present in list")
+
+    def remove_by_value(self, data):
+        itr = self.head
+        success = 0
+        while itr:
+            if itr.next and itr.next.data == data:
+                success = 1
+                itr.next = itr.next.next
+                break
+                # Todos los casos menos si se encuentra en el ultimo puesto
+            if not itr.next and itr.data == data:
+                success = 1
+                self.remove_at(self.get_length() - 1)
+                break
+            itr = itr.next
+        if success == 0:
+            raise Exception("Value not found in linked list")
+
     def print(self):
         if self.head is None:
             print("Your linked list is empty")
@@ -134,5 +164,7 @@ if __name__ == '__main__':
     ll.print()  # Imprimirla
     ll.insert_at(1, "Niebla")
     ll.print()
-    ll.remove_at(1)
+    ll.insert_after_value("Niebla", "Niebla Jr.")
+    ll.remove_by_value("Niebla Jr.")
+    ll.remove_by_value("Javier")
     ll.print()
