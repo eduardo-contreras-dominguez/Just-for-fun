@@ -102,7 +102,7 @@ class BinarySearchTreeNode:
         :return:
         """
         if self.left:
-            self.left.find_min()
+            return self.left.find_min()
         else:
             return self.data
 
@@ -113,7 +113,7 @@ class BinarySearchTreeNode:
         :return:
         """
         if self.right:
-            self.right.find_max()
+            return self.right.find_max()
         else:
             return self.data
 
@@ -125,16 +125,40 @@ class BinarySearchTreeNode:
         """
         return sum(self.in_order_traversal())
 
+    def delete_by_value(self, val):
+        if val < self.data:
+            if self.left:
+                self.left = self.left.delete_by_value(val)
+        if val > self.data:
+            if self.right:
+                self.right = self.right.delete_by_value(val)
+        else:  # Valor del nodo corresponde al que se quiere eliminar.
+            if self.left is None and self.right is None:
+                return None  # Se informa al padre de este nodo que ha desaparecido.
+            elif self.left is None:
+                return self.right
+            elif self.right is None:
+                return self.left
+            min_val = self.right.find_min()
+            self.data = min_val
+            self.right = self.right.delete(min_val)
+        return self
+
 
 def create_BST(list_of_numbers):
     root = BinarySearchTreeNode(list_of_numbers[0])
     for i in range(1, len(list_of_numbers)):
-        root.add_child(i)
+        root.add_child(list_of_numbers[i])
     return root
 
 
 if __name__ == "__main__":
-    L = [6, 2, 3, 8, 5, 1, 7, 4]
+    L = [15, 12, 27, 7, 14, 20, 88, 23]
     R = create_BST(L)
     print(R.search_value(4))
     print(R.search_value(12))
+    print(R.find_min())
+    print(R.find_max())
+    print(R.in_order_traversal())
+    print(R.pre_order_traversal())
+    print(R.post_order_traversal())
