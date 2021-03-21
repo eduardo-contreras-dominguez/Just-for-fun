@@ -1,7 +1,7 @@
 class BinarySearchTreeNode:
     def __init__(self, data):
         """
-        Node in a BST, chaacterized by their left and right children.
+        Node in a BST, characterized by their left and right children.
 
         :param data:
         """
@@ -144,6 +144,16 @@ class BinarySearchTreeNode:
             self.right = self.right.delete(min_val)
         return self
 
+    def get_height(self, counter_left=0, counter_right=0):
+        if self.left:
+            counter_left += 1
+            counter_left = self.left.get_height(counter_left, counter_right=counter_left)
+        if self.right:
+            counter_right +=1
+            counter_right = self.right.get_height(counter_left = counter_right, counter_right = counter_right)
+        return max(counter_left, counter_right)
+
+
 
 def create_BST(list_of_numbers):
     root = BinarySearchTreeNode(list_of_numbers[0])
@@ -156,6 +166,7 @@ if __name__ == "__main__":
     L = [15, 12, 27, 7, 14, 20, 88, 23]
     R = create_BST(L)
     print(R.search_value(4))
+    print(R.get_height())
     print(R.search_value(12))
     print(R.find_min())
     print(R.find_max())
