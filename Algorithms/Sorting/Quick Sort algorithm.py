@@ -1,4 +1,12 @@
 def swap(index_1, index_2, arr):
+    """
+    Will swap two elements in an array.
+
+    :param index_1:
+    :param index_2:
+    :param arr:
+    :return:
+    """
     if index_1 != index_2:
         copy = arr[index_1]
         arr[index_1] = arr[index_2]
@@ -6,6 +14,13 @@ def swap(index_1, index_2, arr):
 
 
 def partition(elements, start, end):
+    """
+    Hoare's partition algorithm.
+    :param elements:
+    :param start:
+    :param end:
+    :return: Index where the pivot is at the end of the algorithm.
+    """
     pivot_index = start
     pivot = elements[pivot_index]
 
@@ -26,6 +41,15 @@ def partition(elements, start, end):
 
 
 def quick_sort(elements, start, end):
+    """
+    Easy recursive quick sort algorithm.
+
+    :param elements:
+    :param start:
+    :param end:
+    :return:
+    """
+
     if start < end:
         pi = partition(elements, start, end)  # Indice en el que se encuentra el pivote ahora mismo.
         quick_sort(elements, start, pi - 1)  # Realizar recursivamente en la particion izquierda.
