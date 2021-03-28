@@ -31,14 +31,14 @@ def dijkstra_bis(graph, start, goal):
         unseenNodes.pop(min_distance_node)
 
         ###############Algoritmo terminado : recorrer camino optimo.
-        current_node = goal
-        while current_node != start:
-            try:
-                path.insert(0, current_node)
-                current_node = track_predecessor[current_node]
-            except KeyError:
-                print("Doesn't find an optimal path")
-                break
+    current_node = goal
+    while current_node != start:
+        try:
+            path.insert(0, current_node)
+            current_node = track_predecessor[current_node]
+        except KeyError:
+            print("Doesn't find an optimal path")
+            break
     return shortest_distance[goal]
 
 
@@ -186,8 +186,10 @@ def transform_amazon_array_to_graph(areas_to_deliver):
 
 if __name__ == "__main__":
     areas_to_deliver = np.array([[1, 0, 1], [1, 0, 0], [1, 9, 1]])
-    print(areas_to_deliver)
-    graph_to_deliver = transform_amazon_array_to_graph(areas_to_deliver)[0]
+    areas_to_deliver_complicated = np.array(
+        [[1, 1, 1, 1, 0], [0, 1, 0, 1, 0], [1, 1, 0, 1, 0], [1, 0, 0, 1, 0], [1, 1, 1, 9, 0]])
+    print(areas_to_deliver_complicated)
+    (graph_to_deliver, goal_node) = transform_amazon_array_to_graph(areas_to_deliver_complicated)
     minimum_distance = dijkstra_bis(graph_to_deliver, start="(0, 0)",
-                                    goal=transform_amazon_array_to_graph(areas_to_deliver)[1])
-    print(graph_to_deliver)
+                                    goal=goal_node)
+    print(f"The minimum distance to delivery zone is: {minimum_distance}")
