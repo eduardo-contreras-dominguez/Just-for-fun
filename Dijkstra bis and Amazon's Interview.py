@@ -39,7 +39,7 @@ def dijkstra_bis(graph, start, goal):
         except KeyError:
             print("Doesn't find an optimal path")
             break
-    return shortest_distance[goal]
+    return shortest_distance[goal], path
 
 
 def transform_amazon_array_to_graph(areas_to_deliver):
@@ -190,6 +190,7 @@ if __name__ == "__main__":
         [[1, 1, 1, 1, 0], [0, 1, 0, 1, 0], [1, 1, 0, 1, 0], [1, 0, 0, 1, 0], [1, 1, 1, 9, 0]])
     print(areas_to_deliver_complicated)
     (graph_to_deliver, goal_node) = transform_amazon_array_to_graph(areas_to_deliver_complicated)
-    minimum_distance = dijkstra_bis(graph_to_deliver, start="(0, 0)",
+    (minimum_distance, path) = dijkstra_bis(graph_to_deliver, start="(0, 0)",
                                     goal=goal_node)
     print(f"The minimum distance to delivery zone is: {minimum_distance}")
+    print(f"And the path he has to take is: {path}")
