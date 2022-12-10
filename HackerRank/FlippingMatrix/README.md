@@ -40,5 +40,16 @@ imagenes para una matriz 4x4.
 
 El problema se reduce simplemente a tomar el maximo de cada uno de estos grupos y sumar. 
 
+### Detalladamente
 
+En vez de contar el numero de grupos mediante una formula general, lo cual puede ser sumamente tedioso, simplemente tenemos que ser conscientes que
+<b> El cuadrante arriba a la izquierda ya posee un elemento de cada uno de estos grupos</b>
+ - Iterar una variable i para cada fila del primer cuadrante. 
+ - Iterar una variable j para cada columna del primer cuadrante. 
+ 
+ Para cada doble iteracion (correspondiente a uno de los grupos descritos anteriormente), recuperar el maximo entre las cuatro imagenes posibles y 
+ anadirlo a la suma. 
+ 
+ 
+ 
 
