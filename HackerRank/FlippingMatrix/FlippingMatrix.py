@@ -7,8 +7,10 @@ def FlippingMatrix(matrix):
     """
     n = len(matrix)
     output = 0
+    # Now we are going to iterate through all elements in the upper left submatrix.
     for i in range(n // 2):
         for j in range(n // 2):
+            # We retrieve maximal possible value from all 4 possible positions.
             output += max([matrix[i][j], matrix[i][n - j - 1], matrix[n - i - 1][j], matrix[n - i - 1][n - j - 1]])
     return output
 
